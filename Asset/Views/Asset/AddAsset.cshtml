@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Add Asset";
+}
+@model SystemModel
+
+<form  method="post" asp-action="AddAsset" asp-controller="Asset">
+    <div class="dropdown">
+        <label class="h1">Asset Type</label>
+
+        <select asp-for="SystemType" class="form-control">
+
+            <option value="Laptop">Laptop</option>
+            <option value="Screen">Screen</option>
+            <option value="Mouce">Mouce</option>
+
+        </select>
+    </div>
+    <br />
+    <label asp-for="Brand" class="h1"> Company</label>
+    <input asp-for="Brand" class="form-control" />
+    <br />
+    <label asp-for="ModelNo" class="h1"> Model No</label>
+    <input asp-for="ModelNo" class="form-control" />
+    <br />
+    <label asp-for="SerialNo" class="h1"> serial No</label>
+    <input asp-for="SerialNo" class="form-control" />
+    <br />
+    <label asp-for="Configaration" class="h1"> Configaration</label>
+    <textarea asp-for="Configaration" class="form-control" />write here</textarea>
+    
+
+    <label asp-for="Price" class="h1"> Price</label>
+    <input asp-for="Price" class="form-control" />
+    <br />
+
+
+    <input type="submit" value="ADD" class="btn btn-outline-danger" />
+</form>
+

@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Asset";
+}
+@model List<SystemModel>
+    <h1 class="text-center">ASSETS</h1>
+
+    <div class="w-100 mb-3 text-right">
+        <a class="btn btn-secondary" asp-controller="Asset" asp-action="AddAsset">ADD ASSET</a>
+    </div>
+<table class="table table-hover">
+
+    <tr>
+        <th> SystemID  </th>
+        <th> Brand </th>
+        <th> SystemType </th>
+        <th> ModelNo </th>
+        <th> SerialNo </th>
+        <th> Config </th>
+        <th> Avialable </th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    <tbody>
+        @foreach (var system in Model)
+        {
+            <tr>
+                <td> @system.SystemId </td>
+                <td> @system.Brand  </td>
+                <td> @system.SystemType </td>
+                <td> @system.ModelNo </td>
+                <td> @system.SerialNo </td>
+                <td> @system.Configaration </td>
+                <td> @system.Avialable </td>
+                <td>
+                    @if (@system.Avialable == true)
+                    {
+                        <a class="btn btn-light"asp-controller="Asset" asp-action="TakingFromSystem" asp-route-SystemId="@system.SystemId">Assign</a>
+
+                    }
+                    else
+                    {
+                        <a class="btn btn-light" asp-controller="Asset" asp-route-SystemType="@system.SystemType" asp-route-SystemId="@system.SystemId" asp-action="ReturningPageFromSystem">Return</a>
+                    }
+                </td>
+
+                <td><a class="btn btn-primary" asp-controller="Asset" asp-action="SystemHistory" asp-route-SystemId="@system.SystemId">History</a></td>
+            </tr>
+        }
+
+
+        </tbody>
+
+
+
+
+    </table>

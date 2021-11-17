@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Employee";
+}
+<h1 class="text-center">EMPLOYEES</h1>
+
+@model List<EmployeeModel>
+<table class="table table-hover">
+
+    <tr>
+        <th> Id </th>
+        <th> Name </th>
+        <th> DepertMent </th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    <tbody>
+        @foreach (var system in Model)
+        {
+            <tr>
+        <td> @system.EmpId  </td>
+        <td> @system.Name  </td>
+        <td> @system.Depertment </td>
+        <td><a class="btn btn-light" asp-controller="Asset" asp-action="TakingFromEmployee"asp-route-EmployeeId="@system.EmpId" asp-route-EmployeeType="@system.Name">Assign</a></td>
+        <td><a class="btn btn-primary" asp-controller="Asset" asp-action="EmployeeHistory"asp-route-EmployeeId="@system.EmpId">History</a></td>
+            </tr>
+    }
+
+
+        </tbody>
+
+
+
+
+    </table>

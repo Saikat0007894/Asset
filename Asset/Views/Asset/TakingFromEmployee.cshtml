@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Taking From Employee";
+}
+@model OrderModel
+
+@*<input type="hidden" asp-for="EmployeeId" class="form-control" />*@
+<form asp-action="TakingFromEmployee" asp-controller="Asset" method="POST">
+    <input type="hidden" asp-for="EmployeeId" class="form-control" />
+    <input type="hidden" asp-for="EmpName" class="form-control" />
+    <label asp-for="SystemId">Choose your Asset from the list:</label>
+    <input list="System" name="SystemId" id="SystemId">
+    <span asp-validation-for="SystemId" class="text-danger"></span>
+    <datalist id="System">
+
+        @foreach (var system in Model.Systems)
+        {
+            if (system.Avialable == true)
+            {
+                <option value="@system.SystemId">
+                    @system.SystemType ( @system.SerialNo )
+                </option>
+            }
+        }
+    </datalist>
+    <input asp-controller="Asset" asp-action="TakingFromEmployee" type="submit" value="ASSIGN" class="btn btn-outline-danger" />
+</form>
+      

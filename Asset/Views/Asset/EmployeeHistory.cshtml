@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "EmployeeHistory";
+}
+@model List<OrderModel>
+    <h1 class="text-center">EMPLOYEE HISTORY</h1>
+<table class="table table-hover">
+    <tr>
+        <th> OrderId </th>
+        <th> SystemId </th>
+        <th> IssueDate </th>
+        <th> SubmissionDate </th>
+        <th> Fine </th>
+        <th>SystemType</th>
+        <th>SerialNo</th>
+        <th>ModelNo</th>
+    </tr>
+    <tbody>
+
+        @foreach (var order in Model)
+        {
+        <tr>
+            <td>@order.OrderId</td>
+            <td>@order.SystemId</td>
+            <td>@order.IssueDate</td>
+            <td>@order.SubmissionDate</td>
+            <td>@order.Fine</td>
+            <td>@order.SystemType</td>
+            <td>@order.SerialNo</td>
+            <td>@order.ModelNo</td>
+        </tr>
+
+        }
+
+    </tbody>
+</table>

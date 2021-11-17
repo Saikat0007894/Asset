@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Taking From System";
+}
+@model OrderModel
+
+<form method="POST" asp-action="TakingFromSystem" asp-controller="Asset">
+    <div class="row">
+        <div class="col-md-4">
+            <input type="hidden" asp-for="SystemId" class="form-control" />
+            @*<label asp-for="EmployeeId" class="h1">EmployeeId</label>
+        <input asp-for="EmployeeId" class="form-control" />
+        <br />*@
+            <label asp-for="EmployeeId">Choose EmployeeId from the list:</label>
+            <input list="Employee" name="EmployeeId" id="EmployeeId" class="form-control">
+            <span asp-validation-for="EmployeeId" class="text-danger"></span>
+            <datalist id="Employee">
+                
+                @foreach (var employee in Model.Employees)
+                {
+                    <option value="@employee.EmpId">
+                        ( @employee.Name )
+                    </option>
+                }
+            </datalist>
+
+        </div>
+        <div class="col-md-12 mt-3">
+            <input type="submit" value="ASSIGN" class="btn btn-outline-danger" onlick="validData"/>
+        </div>
+    </div>
+</form>

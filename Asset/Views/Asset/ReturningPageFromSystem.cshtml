@@ -1,0 +1,88 @@
+﻿@{
+    ViewData["Title"] = "return";
+}
+@model OrderModel
+<h1>Please Select DAMAGED PARTS wisely</h1>
+
+<form id="damageForm" method="post" asp-controller="Asset" asp-action="ReturningFromSystem">
+    @if (@Model.SystemType == "Laptop")
+    {
+
+        <input type="checkbox" id="Screen" name="Screen" value="Screen" class="form-check-input" onchange="CalculateAmount()">
+        <label for="systemtype"> Screen</label><br><br />
+        <input type="checkbox" id="Totally" name="Totally" value="Totally" class="form-check-input" onchange="CalculateAmount()">
+        <label for="systemtype"> Totally</label><br><br />
+
+    }
+    @if (@Model.SystemType == "Screen")
+    {
+
+        <input type="checkbox" id="ScreenDamage" name="ScreenDamage" value="ScreenDamage" class="form-check-input" onchange="CalculateAmountsc()">
+        <label for="systemtype"> ScreenDamage</label><br><br />
+
+    }
+    @if (@Model.SystemType == "Mouce")
+    {
+
+        <input type="checkbox" id="MouceDamage" name="MouceDamage" value="MouceDamage" class="form-check-input" onchange="CalculateAmountmc()">
+        <label for="systemtype"> MouseDamage</label><br><br />
+
+    }
+    <h4>You have to pay </h4><br />
+    <label id="fineAmount">0 /-</label>
+    <input type="hidden" asp-for="@Model.SystemId" />
+    <input type="hidden" asp-for="@Model.SystemType" />
+    <input type="hidden" asp-for="@Model.Fine" id="fineAmt" /><br />
+    <button type="submit" value="Done" class="btn btn-outline-danger"> Return </button>
+</form>
+<script>
+    function CalculateAmount() {
+        let totalAmount = 0;
+        $("input[type=checkbox]").each(function () {
+            if ($(this).val() == "Screen") {
+                if ($(this).prop('checked')) {
+                    totalAmount += 1000;
+                }
+            }
+            else if ($(this).val() == "Totally") {
+                if ($(this).prop('checked')) {
+                    totalAmount += 1000;
+                }
+            }
+        })
+        
+        $("#fineAmt").val(totalAmount);
+        $("#fineAmount").html(totalAmount);
+    }
+    function CalculateAmountsc() {
+        let totalAmount = 0;
+        $("input[type=checkbox]").each(function () {
+            if ($(this).val() == "ScreenDamage") {
+                if ($(this).prop('checked')) {
+                    totalAmount += 1000;
+                }
+            }
+            
+        })
+
+        $("#fineAmt").val(totalAmount);
+        $("#fineAmount").html(totalAmount);
+    }
+    function CalculateAmountmc() {
+        let totalAmount = 0;
+        $("input[type=checkbox]").each(function () {
+            if ($(this).val() == "MouceDamage") {
+                if ($(this).prop('checked')) {
+                    totalAmount += 1000;
+                }
+            }
+
+        })
+
+        $("#fineAmt").val(totalAmount);
+        $("#fineAmount").html(totalAmount);
+    }
+
+
+</script>
+
